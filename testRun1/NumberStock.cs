@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Calculator1
 {
-    class BasicCalc
+    class NumberStock
     {
-
-
     }
 }
