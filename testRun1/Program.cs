@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Calculator1;
 
 namespace testRun1
 {
     class Program
     {
+        
         static void Main(string[] args) { 
             string line;
             var rx = new Regex(@"[0-9]+\.?[0-9]*|\.[0-9]+", RegexOptions.Compiled);
@@ -19,10 +21,10 @@ namespace testRun1
             Console.WriteLine(line);
            
             if (line != null) {
-                string[] numArray = line.Split(new Char[] { '+','-','/','*','x'});
+                NumberStock numStock = new NumberStock( line.Split(new Char[] { '+','-','/','*','x'}));
                 string[] opArray = rx.Split(line);
 
-                Console.WriteLine(numArray[0]);
+                Console.WriteLine(numStock.Nums[0]);
                 Console.WriteLine(opArray.Length);
                 Console.WriteLine(opArray[1]);
             }

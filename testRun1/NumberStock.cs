@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace Calculator1
 {
-    class NumberStock
+    public class NumberStock
     {
+       
+            private string[] nums;
+
+        public NumberStock(string[] nums)
+        {
+            this.nums = nums;
+           
+        }
+
+        public string[] Nums { get => nums; set => nums = value; }
+
+        public int getLength() {
+
+            return nums.Length;
+        }
+        
+        
     }
 }
