@@ -19,7 +19,7 @@ namespace testRun1
             line = Console.ReadLine();
             line = Regex.Replace(line, @"\s", ""); 
            
-            if (line != null) {
+            if (line != null || line != "") {
                 NumberStock numStock = new NumberStock( line.Split(new Char[] { '+','-','/','*','x'}));
                 OperationStock opStock =new OperationStock( rx.Split(line));
 
