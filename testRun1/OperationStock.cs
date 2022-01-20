@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace Calculator1
 {
-    class OperationStock
+    public class OperationStock
     {
+        private string[] operations;
+
+        public OperationStock(string[] operations)
+        {
+            this.operations = operations;
+
+        }
+
+        public string[] Operations { get => operations; set => operations = value; }
+
+        public int getLength()
+        {
+
+            return operations.Length;
+        }
     }
 }

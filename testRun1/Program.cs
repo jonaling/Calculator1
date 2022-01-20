@@ -18,15 +18,14 @@ namespace testRun1
             Console.WriteLine("Hello, Welcome to the calculator. Please type in your equation:");
             line = Console.ReadLine();
             line = Regex.Replace(line, @"\s", ""); 
-            Console.WriteLine(line);
            
             if (line != null) {
                 NumberStock numStock = new NumberStock( line.Split(new Char[] { '+','-','/','*','x'}));
-                string[] opArray = rx.Split(line);
+                OperationStock opStock =new OperationStock( rx.Split(line));
 
                 Console.WriteLine(numStock.Nums[0]);
-                Console.WriteLine(opArray.Length);
-                Console.WriteLine(opArray[1]);
+                Console.WriteLine(opStock.getLength());
+                Console.WriteLine(opStock.Operations[1]);
             }
 
             Console.ReadLine();
