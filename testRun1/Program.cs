@@ -23,9 +23,15 @@ namespace testRun1
                 NumberStock numStock = new NumberStock( line.Split(new Char[] { '+','-','/','*','x'}));
                 OperationStock opStock =new OperationStock( rx.Split(line));
 
-                Console.WriteLine(numStock.Nums[0]);
-                Console.WriteLine(opStock.getLength());
-                Console.WriteLine(opStock.Operations[1]);
+                Console.WriteLine("numStock index 0: "+numStock.Nums[0]);
+                Console.WriteLine("numStock length: "+ numStock.getLength());
+                Console.WriteLine("opStock length: " + opStock.getLength());
+                Console.WriteLine("opStock index 1: "+opStock.Ops[1]);
+
+                BasicCalc toSolve = new BasicCalc(numStock, opStock, numStock.getLength(), opStock.getLength());
+                
+                Console.WriteLine(toSolve.solve());
+
             }
 
             Console.ReadLine();

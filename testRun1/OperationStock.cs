@@ -16,7 +16,7 @@ namespace Calculator1
 
         }
 
-        public string[] Operations { get => operations; set => operations = value; }
+        public string[] Ops { get => operations; set => operations = value; }
 
         public int getLength()
         {
