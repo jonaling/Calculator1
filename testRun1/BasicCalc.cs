@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
 namespace Calculator1
 {
+    [Serializable]
     public class BasicCalc
     {
         string[] nums, ops;
@@ -15,7 +17,8 @@ namespace Calculator1
         Queue<Double> numQueue;
         Queue<String> opsQueue;
         Stack<String> opsStack, postfix;
-        
+        Regex rx = new Regex(@"[0-9]+\.?[0-9]*|\.[0-9]+", RegexOptions.Compiled);
+
 
         public BasicCalc(NumberStock numStock,OperationStock opStock, int numLength, int opsLength)
         {
@@ -27,7 +30,7 @@ namespace Calculator1
             opsStack = new Stack<string>();
         }
 
-        public double solve() {
+        public double Solve() {
 
             
             if (opsLength < 1) {
@@ -44,7 +47,7 @@ namespace Calculator1
                     }
 
                 } else
-                if (compareOps(ops[i]) && !ops[i].Equals("")) {
+                if (CompareOps(ops[i]) && !ops[i].Equals("")) {
                     postfix.Push(nums[i]);
                     opsStack.Push(ops[i]);
                 } else {
@@ -67,29 +70,26 @@ namespace Calculator1
                 postfix.Push(opsStack.Pop());
             }
 
-            Console.WriteLine("This is the stack:");
-            Console.WriteLine("====");
-            while (postfix.Count() > 0) {
-                Console.WriteLine(postfix.Pop());
-            }
-            Console.WriteLine("====");
-            return 1.0;
+            
+            return PolishNotation();
 
         }
 
-        private Boolean compareOps(string op) {
-            if (opsStack.Count()>0 && opPriority(op) >= opPriority(opsStack.Peek())) {
+        private Boolean CompareOps(string op) {
+            if (opsStack.Count()>0 && OpPriority(op) >= OpPriority(opsStack.Peek())) {
                 return true;
             }
             return false;
         }
 
-        private int opPriority(string op)
+        private int OpPriority(string op)
         {
             switch (op) {
                 case "+":
                     return 1;
                 case "-":
+                    return 1;
+                case "−":
                     return 1;
                 case "*":
                     return 2;
@@ -105,9 +105,61 @@ namespace Calculator1
             }
         }
 
-      /*  private double PolishNotation(Stack<string> opsStack,) {
-            
-        }*/
+        private Double operationSolve (string op,Double firstNum, Double secondNum) {
+            switch (op) {
+                case "+":
+                    return Addition(firstNum,secondNum);
+                case "-":
+                    return Subtraction(firstNum,secondNum);
+                case "−":
+                    return Subtraction(firstNum, secondNum);
+                case "*":
+                    return Multiply(firstNum, secondNum);
+                case "/":
+                    return Divide(firstNum, secondNum);
+                case "x":
+                    return Multiply(firstNum, secondNum);
+                default:
+                    Console.WriteLine("solver did not recieve the correct sign");
+                    return 1;
+
+            }
+
+        }
+
+        private double PolishNotation() {
+
+            Console.WriteLine("This is the stack:");
+            Console.WriteLine("====");
+
+            if ( postfix.Count < 1) {
+                Console.WriteLine("Something went wrong");
+                return 0;
+            }
+
+            string currObject = postfix.Pop();
+            Double firstNum,secondNum;
+
+
+            Console.WriteLine(currObject);
+
+            if (rx.IsMatch(currObject))
+            {
+                return Double.Parse(currObject);
+            }
+            else
+            {
+
+                secondNum = PolishNotation();
+                firstNum = PolishNotation();
+
+                return operationSolve(currObject, firstNum, secondNum);
+
+
+
+            }
+
+        }
 
         //addition
         private double Addition(string num1, string num2)
@@ -128,41 +180,58 @@ namespace Calculator1
             return num1 + num2;
         }
 
+        //subtraction
+        private double Subtraction(string num1, string num2)
+        {
 
+            return Double.Parse(num1) - Double.Parse(num2);
+        }
+
+        private double Subtraction(string num1, double num2)
+        {
+
+            return Double.Parse(num1) - num2;
+        }
+
+        private double Subtraction(double num1, double num2)
+        {
+
+            return num1 - num2;
+        }
 
         //multiplication
-        public double multiply(string num1, string num2)
+        public double Multiply(string num1, string num2)
         {
 
             return Double.Parse(num1) * Double.Parse(num2);
         }
 
-        public double multiply(string num1, double num2)
+        public double Multiply(string num1, double num2)
         {
 
             return Double.Parse(num1) * num2;
         }
 
-        public double multiply(double num1, double num2)
+        public double Multiply(double num1, double num2)
         {
 
             return num1 * num2;
         }
 
         //division
-        public double divide(string num1, string num2)
+        public double Divide(string num1, string num2)
         {
 
             return Double.Parse(num1) / Double.Parse(num2);
         }
 
-        public double divide(string num1, int num2)
+        public double Divide(string num1, int num2)
         {
 
             return Double.Parse(num1) / num2;
         }
 
-        public double divide(double num1, double num2)
+        public double Divide(double num1, double num2)
         {
 
             return num1 / num2;

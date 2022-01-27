@@ -19,7 +19,7 @@ namespace Calculator1
 
         public string[] Nums { get => nums; set => nums = value; }
 
-        public int getLength() {
+        public int GetLength() {
 
             return nums.Length;
         }

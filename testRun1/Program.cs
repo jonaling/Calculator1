@@ -24,20 +24,20 @@ namespace testRun1
                 OperationStock opStock =new OperationStock( rx.Split(line));
 
                 Console.WriteLine("numStock index 0: "+numStock.Nums[0]);
-                Console.WriteLine("numStock length: "+ numStock.getLength());
-                Console.WriteLine("opStock length: " + opStock.getLength());
+                Console.WriteLine("numStock length: "+ numStock.GetLength());
+                Console.WriteLine("opStock length: " + opStock.GetLength());
                 Console.WriteLine("opStock index 1: "+opStock.Ops[1]);
 
-                BasicCalc toSolve = new BasicCalc(numStock, opStock, numStock.getLength(), opStock.getLength());
+                BasicCalc toSolve = new BasicCalc(numStock, opStock, numStock.GetLength(), opStock.GetLength());
                 
-                Console.WriteLine(toSolve.solve());
+                Console.WriteLine(toSolve.Solve());
 
             }
 
             Console.ReadLine();
         }
 
-        public void validation(string line){ 
+        public void Validation(string line){ 
             if(line.Length < 1)
             {
 

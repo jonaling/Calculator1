@@ -18,7 +18,7 @@ namespace Calculator1
 
         public string[] Ops { get => operations; set => operations = value; }
 
-        public int getLength()
+        public int GetLength()
         {
 
             return operations.Length;
