@@ -14,8 +14,7 @@ namespace Calculator1
         string[] nums, ops;
         
         int numLength, opsLength;
-        Queue<Double> numQueue;
-        Queue<String> opsQueue;
+        
         Stack<String> opsStack, postfix;
         Regex rx = new Regex(@"[0-9]+\.?[0-9]*|\.[0-9]+", RegexOptions.Compiled);
 

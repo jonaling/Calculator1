@@ -22,11 +22,12 @@ namespace testRun1
             if (line != null || line != "") {
                 NumberStock numStock = new NumberStock( line.Split(new Char[] { '+','-','/','*','x'}));
                 OperationStock opStock =new OperationStock( rx.Split(line));
-
+                /*   
                 Console.WriteLine("numStock index 0: "+numStock.Nums[0]);
                 Console.WriteLine("numStock length: "+ numStock.GetLength());
                 Console.WriteLine("opStock length: " + opStock.GetLength());
                 Console.WriteLine("opStock index 1: "+opStock.Ops[1]);
+                */
 
                 BasicCalc toSolve = new BasicCalc(numStock, opStock, numStock.GetLength(), opStock.GetLength());
                 
@@ -37,12 +38,13 @@ namespace testRun1
             Console.ReadLine();
         }
 
-        public void Validation(string line){ 
+        public Boolean Validation(string line){ 
             if(line.Length < 1)
             {
-
+                Console.WriteLine("Please enter an input. ");
+                return false;
             }
-
+            return true;
         }
 
 
