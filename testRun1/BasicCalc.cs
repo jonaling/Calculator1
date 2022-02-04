@@ -87,15 +87,15 @@ namespace Calculator1
                 case "+":
                     return 1;
                 case "-":
-                    return 1;
+                    return 2;
                 case "−":
-                    return 1;
+                    return 2;
                 case "*":
-                    return 2;
+                    return 3;
                 case "/":
-                    return 2;
+                    return 3;
                 case "x":
-                    return 2;
+                    return 3;
                 case "":
                     return 1;
                 default:
@@ -132,7 +132,7 @@ namespace Calculator1
             Console.WriteLine("====");
 
             if ( postfix.Count < 1) {
-                Console.WriteLine("Something went wrong");
+
                 return 0;
             }
 

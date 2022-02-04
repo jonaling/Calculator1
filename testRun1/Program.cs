@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Calculator1;
 
+
 namespace testRun1
 {
     class Program
@@ -17,9 +18,12 @@ namespace testRun1
 
             Console.WriteLine("Hello, Welcome to the calculator. Please type in your equation:");
             line = Console.ReadLine();
-            line = Regex.Replace(line, @"\s", ""); 
+            line = Regex.Replace(line, @"\s", "");
+            
+
            
-            if (line != null || line != "") {
+            if (Validation(line)) {
+                line = NumberPad(line);
                 NumberStock numStock = new NumberStock( line.Split(new Char[] { '+','-','/','*','x'}));
                 OperationStock opStock =new OperationStock( rx.Split(line));
                 /*   
@@ -38,15 +42,28 @@ namespace testRun1
             Console.ReadLine();
         }
 
-        public Boolean Validation(string line){ 
+        public static Boolean Validation(string line){ 
             if(line.Length < 1)
             {
-                Console.WriteLine("Please enter an input. ");
+                Console.WriteLine("Please enter an input.");
+                return false;
+            }
+
+            if ( !line.StartsWith("-") && ! Char.IsNumber(line,0) ) {
+                
+                Console.WriteLine("Please do not start with an invalid operator");
                 return false;
             }
             return true;
         }
 
+        public static String NumberPad(String line) {
+            if (!Char.IsNumber(line, 0)) {
+                return "0" + line;
+            }
+
+            return line;
+        }
 
    
 }
